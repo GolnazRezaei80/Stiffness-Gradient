@@ -1,0 +1,74 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\normality.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Jan 2026, 21:00:26
+
+{com}. histogram diff,normal kdensity
+{txt}(bin={res}21{txt}, start={res}-4.5999999{txt}, width={res}.87142856{txt})
+{res}
+{com}. qnorm dif
+{res}
+{com}. swilk diff
+
+                   {txt}Shapiro–Wilk W test for normal data
+
+    Variable {c |}        Obs{col 33}W{col 45}V{col 55}z       Prob>z
+{hline 13}{c +}{hline 54}
+        diff {c |} {res}       481    0.97508      8.097     5.019    0.00000
+
+{com}. sktest diff
+{res}
+{txt}Skewness and kurtosis tests for normality
+{col 58}{hline 5} Joint test {hline 5}
+{col 5}Variable {c |}{col 22}Obs   Pr(skewness)   Pr(kurtosis)   Adj chi2(2)  Prob>chi2
+{hline 13}{c +}{hline 65}
+        diff {c |}{res}{col 16}      481{col 34}0.2083{col 49}0.0000{col 60}    24.34{col 74}0.0000
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\normality.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Jan 2026, 21:03:04
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\normality.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Jan 2026, 21:17:07
+
+{com}. histogram logratio ,normal kdensity
+{txt}(bin={res}21{txt}, start={res}-.33647221{txt}, width={res}.06115531{txt})
+{res}
+{com}. graph save "Graph" "C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\Graph-log.gph"
+{res}{txt}file {bf:C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\Graph-log.gph} saved
+
+{com}. qnorm logratio
+{res}
+{com}. swilk logratio
+
+                   {txt}Shapiro–Wilk W test for normal data
+
+    Variable {c |}        Obs{col 33}W{col 45}V{col 55}z       Prob>z
+{hline 13}{c +}{hline 54}
+    logratio {c |} {res}       481    0.98596      4.561     3.641    0.00014
+
+{com}. sktest logratio
+{res}
+{txt}Skewness and kurtosis tests for normality
+{col 58}{hline 5} Joint test {hline 5}
+{col 5}Variable {c |}{col 22}Obs   Pr(skewness)   Pr(kurtosis)   Adj chi2(2)  Prob>chi2
+{hline 13}{c +}{hline 65}
+    logratio {c |}{res}{col 16}      481{col 34}0.1727{col 49}0.0009{col 60}    11.57{col 74}0.0031
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\normality\normality.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Jan 2026, 21:18:55
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

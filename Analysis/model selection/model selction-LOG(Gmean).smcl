@@ -1,0 +1,309 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\model selction.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}30 Dec 2025, 04:17:47
+
+{com}. fracpoly: regress logratio loggmean, compare
+{res}........
+{txt}-> gen double Ilogg__1 = loggmean^3-14.12293693 if e(sample)
+-> gen double Ilogg__2 = loggmean^3*ln(loggmean)-12.46490512 if e(sample)
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}       481
+{txt}{hline 13}{c +}{hline 34}   F(2, 478)       = {res}    49.71
+{txt}       Model {c |} {res} 2.96536991         2  1.48268495   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 14.2585542       478  .029829611   {txt}R-squared       ={res}    0.1722
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1687
+{txt}       Total {c |} {res} 17.2239241       480  .035883175   {txt}Root MSE        =   {res} .17271
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}Ilogg__1 {c |}{col 14}{res}{space 2} .0337842{col 26}{space 2}  .061001{col 37}{space 1}    0.55{col 46}{space 3}0.580{col 54}{space 4} -.086079{col 67}{space 3} .1536474
+{txt}{space 4}Ilogg__2 {c |}{col 14}{res}{space 2}-.0471281{col 26}{space 2} .0492863{col 37}{space 1}   -0.96{col 46}{space 3}0.339{col 54}{space 4}-.1439727{col 67}{space 3} .0497166
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3141422{col 26}{space 2} .0096158{col 37}{space 1}   32.67{col 46}{space 3}0.000{col 54}{space 4} .2952478{col 67}{space 3} .3330365
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}Deviance = {res}-327.38{txt}. Best powers of {res}loggmean{txt} among {res}44{txt} models fit: {res}3 3{txt}.
+
+Fractional polynomial model comparisons:
+{hline 78}
+loggmean{col 18}df       Deviance      Res. SD   Dev. dif.  P (*)  Powers
+{hline 78}
+Not in model{col 18}{res} 0{col 22}     -236.503      .189429    90.881    0.000  
+{txt}Linear{col 18}{res} 1{col 22}     -323.594      .173213     3.791    0.289  1
+{txt}m = 1{col 18}{res} 2{col 22}     -326.465      .172697     0.919    0.635  3
+{txt}m = 2{col 18}{res} 4{col 22}     -327.385      .172713 {txt}       {hline 2}       {hline 2}  {res}3 3
+{txt}{hline 78}
+(*) P-value from deviance difference comparing reported model with m = 2 model
+
+{com}. predict res, residuals
+{txt}(583 missing values generated)
+
+{com}. gen sd = sqrt(3.14/2)*abs(res)
+{txt}(583 missing values generated)
+
+{com}. fracpoly: regress sd loggmean, compare
+{res}........
+{txt}-> gen double Ilogg__1 = loggmean^-2-.1711525288 if e(sample)
+-> gen double Ilogg__2 = loggmean^-2*ln(loggmean)-.1510592338 if e(sample)
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}       481
+{txt}{hline 13}{c +}{hline 34}   F(2, 478)       = {res}     2.47
+{txt}       Model {c |} {res} .093377199         2  .046688599   {txt}Prob > F        ={res}    0.0857
+{txt}    Residual {c |} {res}  9.0380429       478   .01890804   {txt}R-squared       ={res}    0.0102
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0061
+{txt}       Total {c |} {res}  9.1314201       480  .019023792   {txt}Root MSE        =   {res} .13751
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          sd{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}Ilogg__1 {c |}{col 14}{res}{space 2} 2.722826{col 26}{space 2} 1.674047{col 37}{space 1}    1.63{col 46}{space 3}0.105{col 54}{space 4}-.5665757{col 67}{space 3} 6.012227
+{txt}{space 4}Ilogg__2 {c |}{col 14}{res}{space 2}-8.342809{col 26}{space 2} 4.558261{col 37}{space 1}   -1.83{col 46}{space 3}0.068{col 54}{space 4}-17.29951{col 67}{space 3} .6138966
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1594174{col 26}{space 2}  .007503{col 37}{space 1}   21.25{col 46}{space 3}0.000{col 54}{space 4} .1446745{col 67}{space 3} .1741603
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}Deviance = {res}-546.68{txt}. Best powers of {res}loggmean{txt} among {res}44{txt} models fit: {res}-2 -2{txt}.
+
+Fractional polynomial model comparisons:
+{hline 78}
+loggmean{col 18}df       Deviance      Res. SD   Dev. dif.  P (*)  Powers
+{hline 78}
+Not in model{col 18}{res} 0{col 22}     -541.735      .137927     4.944    0.297  
+{txt}Linear{col 18}{res} 1{col 22}     -544.044       .13774     2.635    0.456  1
+{txt}m = 1{col 18}{res} 2{col 22}     -544.443      .137683     2.236    0.331  3
+{txt}m = 2{col 18}{res} 4{col 22}     -546.679      .137507 {txt}       {hline 2}       {hline 2}  {res}-2 -2
+{txt}{hline 78}
+(*) P-value from deviance difference comparing reported model with m = 2 model
+
+{com}. xriml logratio loggmean, fp(m:1, s:1) dist(n) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 162.25554
+{txt}rescale:       log likelihood = {res} 162.25554
+{txt}rescale eq:    log likelihood = {res} 162.25554
+{txt}Iteration 0:{col 16}log likelihood = {res} 162.25554{txt}  
+Iteration 1:{col 16}log likelihood = {res} 162.95749{txt}  
+Iteration 2:{col 16}log likelihood = {res}   162.958{txt}  
+Iteration 3:{col 16}log likelihood = {res}   162.958{txt}  
+
+Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}     88.52
+{txt}Log likelihood = {res}   162.958{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.4241439{col 26}{space 2} .0450796{col 37}{space 1}   -9.41{col 46}{space 3}0.000{col 54}{space 4}-.5124984{col 67}{space 3}-.3357894
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3033162{col 26}{space 2} .0078769{col 37}{space 1}   38.51{col 46}{space 3}0.000{col 54}{space 4} .2878779{col 67}{space 3} .3187546
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0415617{col 26}{space 2} .0272421{col 37}{space 1}    1.53{col 46}{space 3}0.127{col 54}{space 4}-.0118319{col 67}{space 3} .0949553
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1725929{col 26}{space 2} .0055684{col 37}{space 1}   31.00{col 46}{space 3}0.000{col 54}{space 4}  .161679{col 67}{space 3} .1835067
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -325.916{txt} ({res}481{txt} observations.)
+
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       481{col 28}        .{col 39}  162.958{col 50}     4{col 58} -317.916{col 69}-301.2125
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] BIC note}}.{p_end}
+
+{com}. qnorm Z_ml
+{res}
+{com}. swilk Z_ml
+
+                   {txt}Shapiro–Wilk W test for normal data
+
+    Variable {c |}        Obs{col 33}W{col 45}V{col 55}z       Prob>z
+{hline 13}{c +}{hline 54}
+        Z_ml {c |} {res}       481    0.98259      5.656     4.158    0.00002
+
+{com}. xriml logratio loggmean, fp(m:1, s:1) dist(en) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 160.95726
+{txt}rescale:       log likelihood = {res} 160.95726
+{txt}rescale eq:    log likelihood = {res} 168.29758
+{txt}Iteration 0:{col 16}log likelihood = {res} 168.29758{txt}  
+Iteration 1:{col 16}log likelihood = {res} 169.72096{txt}  
+Iteration 2:{col 16}log likelihood = {res} 169.72315{txt}  
+Iteration 3:{col 16}log likelihood = {res} 169.72315{txt}  
+
+Exponential-Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}     84.51
+{txt}Log likelihood = {res} 169.72315{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.4199684{col 26}{space 2}  .045683{col 37}{space 1}   -9.19{col 46}{space 3}0.000{col 54}{space 4}-.5095055{col 67}{space 3}-.3304313
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2929893{col 26}{space 2} .0081981{col 37}{space 1}   35.74{col 46}{space 3}0.000{col 54}{space 4} .2769214{col 67}{space 3} .3090573
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0564684{col 26}{space 2} .0290603{col 37}{space 1}    1.94{col 46}{space 3}0.052{col 54}{space 4}-.0004888{col 67}{space 3} .1134255
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1690731{col 26}{space 2} .0055718{col 37}{space 1}   30.34{col 46}{space 3}0.000{col 54}{space 4} .1581525{col 67}{space 3} .1799936
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1199521{col 26}{space 2} .0323827{col 37}{space 1}   -3.70{col 46}{space 3}0.000{col 54}{space 4}-.1834212{col 67}{space 3}-.0564831
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -339.446{txt} ({res}481{txt} observations.)
+
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       481{col 28}        .{col 39} 169.7231{col 50}     5{col 58}-329.4463{col 69} -308.567
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] BIC note}}.{p_end}
+
+{com}. qnorm Z_ml
+{res}
+{com}. swilk Z_ml
+
+                   {txt}Shapiro–Wilk W test for normal data
+
+    Variable {c |}        Obs{col 33}W{col 45}V{col 55}z       Prob>z
+{hline 13}{c +}{hline 54}
+        Z_ml {c |} {res}       481    0.99140      2.795     2.466    0.00683
+
+{com}. xriml logratio loggmean, fp(m:1, s:1) dist(men) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 163.46976
+{txt}rescale:       log likelihood = {res} 163.46976
+{txt}rescale eq:    log likelihood = {res} 168.64166
+{txt}Iteration 0:{col 16}log likelihood = {res} 168.64166{txt}  
+Iteration 1:{col 16}log likelihood = {res} 172.22283{txt}  
+Iteration 2:{col 16}log likelihood = {res} 172.61384{txt}  
+Iteration 3:{col 16}log likelihood = {res} 172.66792{txt}  
+Iteration 4:{col 16}log likelihood = {res} 172.68072{txt}  
+Iteration 5:{col 16}log likelihood = {res} 172.68096{txt}  
+Iteration 6:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 7:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 8:{col 16}log likelihood = {res} 172.68101{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}    206.29
+{txt}Log likelihood = {res} 172.68101{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3843073{col 26}{space 2} .0267573{col 37}{space 1}  -14.36{col 46}{space 3}0.000{col 54}{space 4}-.4367507{col 67}{space 3}-.3318639
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2927609{col 26}{space 2} .0076455{col 37}{space 1}   38.29{col 46}{space 3}0.000{col 54}{space 4} .2777761{col 67}{space 3} .3077457
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0564551{col 26}{space 2} .0266084{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4} .0043037{col 67}{space 3} .1086065
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1437837{col 26}{space 2}  .010666{col 37}{space 1}   13.48{col 46}{space 3}0.000{col 54}{space 4} .1228787{col 67}{space 3} .1646887
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1060931{col 26}{space 2} .0329944{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.1707609{col 67}{space 3}-.0414253
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7321162{col 26}{space 2} .0998123{col 37}{space 1}    7.33{col 46}{space 3}0.000{col 54}{space 4} .5364877{col 67}{space 3} .9277446
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -345.362{txt} ({res}481{txt} observations.)
+
+{com}. estat ic
+
+{txt}Akaike's information criterion and Bayesian information criterion
+
+{hline 13}{c TT}{hline 63}
+       Model {c |}          N   ll(null)  ll(model)      df        AIC        BIC
+{hline 13}{c +}{hline 63}
+{ralign 12:.}{col 14}{c |}{res}{col 16}       481{col 28}        .{col 39}  172.681{col 50}     6{col 58} -333.362{col 69}-308.3068
+{txt}{hline 13}{c BT}{hline 63}
+{p 0 6 0 77}Note: BIC uses N = number of observations. See {helpb bic_note:{bind:[R] BIC note}}.{p_end}
+
+{com}. qnorm Z_ml
+{res}
+{com}. swilk Z_ml
+
+                   {txt}Shapiro–Wilk W test for normal data
+
+    Variable {c |}        Obs{col 33}W{col 45}V{col 55}z       Prob>z
+{hline 13}{c +}{hline 54}
+        Z_ml {c |} {res}       481    0.99621      1.232     0.502    0.30800
+
+{com}. xriml logratio loggmean, fp(m:1, s:1) dist(men) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 163.46976
+{txt}rescale:       log likelihood = {res} 163.46976
+{txt}rescale eq:    log likelihood = {res} 168.64166
+{txt}Iteration 0:{col 16}log likelihood = {res} 168.64166{txt}  
+Iteration 1:{col 16}log likelihood = {res} 172.22283{txt}  
+Iteration 2:{col 16}log likelihood = {res} 172.61384{txt}  
+Iteration 3:{col 16}log likelihood = {res} 172.66792{txt}  
+Iteration 4:{col 16}log likelihood = {res} 172.68072{txt}  
+Iteration 5:{col 16}log likelihood = {res} 172.68096{txt}  
+Iteration 6:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 7:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 8:{col 16}log likelihood = {res} 172.68101{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}    206.29
+{txt}Log likelihood = {res} 172.68101{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3843073{col 26}{space 2} .0267573{col 37}{space 1}  -14.36{col 46}{space 3}0.000{col 54}{space 4}-.4367507{col 67}{space 3}-.3318639
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2927609{col 26}{space 2} .0076455{col 37}{space 1}   38.29{col 46}{space 3}0.000{col 54}{space 4} .2777761{col 67}{space 3} .3077457
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0564551{col 26}{space 2} .0266084{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4} .0043037{col 67}{space 3} .1086065
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1437837{col 26}{space 2}  .010666{col 37}{space 1}   13.48{col 46}{space 3}0.000{col 54}{space 4} .1228787{col 67}{space 3} .1646887
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1060931{col 26}{space 2} .0329944{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.1707609{col 67}{space 3}-.0414253
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7321162{col 26}{space 2} .0998123{col 37}{space 1}    7.33{col 46}{space 3}0.000{col 54}{space 4} .5364877{col 67}{space 3} .9277446
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -345.362{txt} ({res}481{txt} observations.)
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\model selction.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}30 Dec 2025, 04:19:00
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

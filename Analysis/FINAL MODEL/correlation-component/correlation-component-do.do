@@ -1,0 +1,2 @@
+twoway (scatter RbaPWV_ABI PWV, mcolor(blue)) (fpfit RbaPWV_ABI PWV) (function y=x, range(PWV) lcolor(red) lpattern(dash)), xtitle("cfPWV (Denominator)") ytitle("baPWV (Numerator)")
+twoway (scatter RbaPWV_ABI PWV_ratio) (fpfit RbaPWV_ABI PWV_ratio )(scatter PWV PWV_ratio) (fpfit PWV PWV_ratio )

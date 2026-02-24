@@ -1,0 +1,150 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\FINAL MODEL\LOA.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}13 Jan 2026, 02:01:39
+
+{com}. xriml logratio loggmean , fp(m:1, s:1) dist(men) centile(3 97) se nograph
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 163.46976
+{txt}rescale:       log likelihood = {res} 163.46976
+{txt}rescale eq:    log likelihood = {res} 168.64166
+{txt}Iteration 0:{col 16}log likelihood = {res} 168.64166{txt}  
+Iteration 1:{col 16}log likelihood = {res}  172.2273{txt}  
+Iteration 2:{col 16}log likelihood = {res}  172.6141{txt}  
+Iteration 3:{col 16}log likelihood = {res} 172.66808{txt}  
+Iteration 4:{col 16}log likelihood = {res} 172.68072{txt}  
+Iteration 5:{col 16}log likelihood = {res} 172.68096{txt}  
+Iteration 6:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 7:{col 16}log likelihood = {res} 172.68101{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}    187.34
+{txt}Log likelihood = {res} 172.68101{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3843291{col 26}{space 2} .0280791{col 37}{space 1}  -13.69{col 46}{space 3}0.000{col 54}{space 4}-.4393631{col 67}{space 3}-.3292951
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2927587{col 26}{space 2} .0076924{col 37}{space 1}   38.06{col 46}{space 3}0.000{col 54}{space 4} .2776818{col 67}{space 3} .3078356
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2}  .056451{col 26}{space 2} .0266573{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4} .0042036{col 67}{space 3} .1086983
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1437847{col 26}{space 2} .0106727{col 37}{space 1}   13.47{col 46}{space 3}0.000{col 54}{space 4} .1228666{col 67}{space 3} .1647027
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1060948{col 26}{space 2} .0330007{col 37}{space 1}   -3.21{col 46}{space 3}0.001{col 54}{space 4} -.170775{col 67}{space 3}-.0414146
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}   .73213{col 26}{space 2} .0999547{col 37}{space 1}    7.32{col 46}{space 3}0.000{col 54}{space 4} .5362224{col 67}{space 3} .9280377
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 3th centile ...
+
+Calculating SE of 97th centile ...
+
+Final deviance = {res} -345.362{txt} ({res}481{txt} observations.)
+
+{com}. 
+. program define xr_loaboot, rclass
+{txt}  1{com}. 
+.     quietly {c -(}
+{txt}  2{com}. 
+.         capture drop C3_ml C97_ml
+{txt}  3{com}. 
+.        xriml logratio loggmean , fp(m:1, s:1) dist(men) centile(3 97) se nograph
+{txt}  4{com}. 
+.         summarize C3_ml, meanonly
+{txt}  5{com}. 
+.         return scalar LOA_lower = r(mean)
+{txt}  6{com}. 
+.         summarize C97_ml, meanonly
+{txt}  7{com}. 
+.         return scalar LOA_upper = r(mean)
+{txt}  8{com}. 
+.     {c )-}
+{txt}  9{com}. 
+. end
+
+. 
+. bootstrap LOA_lower=r(LOA_lower) LOA_upper=r(LOA_upper), reps(1000) seed(12345): xr_loaboot
+{res}{txt}(running {bf:xr_loaboot} on estimation sample)
+
+Bootstrap replications ({res}1,000{txt})
+{hline 4}{c +}{hline 3} 1 {hline 3}{c +}{hline 3} 2 {hline 3}{c +}{hline 3} 3 {hline 3}{c +}{hline 3} 4 {hline 3}{c +}{hline 3} 5 
+..................................................    50
+..................................................   100
+..................................................   150
+..................................................   200
+..................................................   250
+...{err}x{txt}..............................................   300
+..................................................   350
+............................................{err}x{txt}.....   400
+........{err}x{txt}.........{err}x{txt}...............................   450
+.................{err}x{txt}................................   500
+..................................................   550
+..................................................   600
+..................................................   650
+..................................................   700
+..................................................   750
+.................{err}xx{txt}...............................   800
+.........{err}x{txt}....{err}x{txt}...................................   850
+..................................................   900
+...{err}x{txt}..............................................   950
+.................................................. 1,000
+{res}
+{txt}Bootstrap results{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:481}
+{txt}{col 60}{lalign 13:Replications}{col 73} = {res}{ralign 3:990}
+{p2colset 7 16 20 2}{...}
+
+{txt}{p2col :Command:}{res:xr_loaboot}{p_end}
+{p2colset 5 16 20 2}{...}
+{p2col :LOA_lower:}{res:r(LOA_lower)}{p_end}
+{p2colset 5 16 20 2}{...}
+{p2col :LOA_upper:}{res:r(LOA_upper)}{p_end}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}   Observed{col 26}   Bootstrap{col 54}         Norm{col 67}al-based
+{col 14}{c |} coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}LOA_lower {c |}{col 14}{res}{space 2}  .001138{col 26}{space 2} .0202629{col 37}{space 1}    0.06{col 46}{space 3}0.955{col 54}{space 4}-.0385764{col 67}{space 3} .0408525
+{txt}{space 3}LOA_upper {c |}{col 14}{res}{space 2}  .664838{col 26}{space 2}  .022259{col 37}{space 1}   29.87{col 46}{space 3}0.000{col 54}{space 4}  .621211{col 67}{space 3} .7084649
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 79}Note: One or more parameters could not be estimated in 10 bootstrap replicates; standard-error estimates include only complete replications.{p_end}
+
+{com}. * Point estimates (log scale)
+
+. display exp(0.001138)
+{res}1.0011386
+
+{com}. display exp(0.664838)
+{res}1.9441755
+
+{com}. * 95% CI for lower ratio limit
+
+. display exp(-0.0385764)
+{res}.96215819
+
+{com}. display exp(0.0408525)
+{res}1.0416984
+
+{com}. * 95% CI for upper ratio limit
+
+. display exp(0.621211)
+{res}1.8611806
+
+{com}. display exp(0.7084649)
+{res}2.0308713
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\pc\Desktop\baPWV & PWV\Analysis\FINAL MODEL\LOA.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}13 Jan 2026, 02:20:27
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
