@@ -1,0 +1,198 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Golnaz\Desktop\sensitivity HTN\HTN-SBP.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}31 Jul 2026, 08:51:14
+
+{com}. * Original model
+
+. 
+. xriml logratio loggmean, fp(m:1, s:1) dist(men) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 163.46976
+{txt}rescale:       log likelihood = {res} 163.46976
+{txt}rescale eq:    log likelihood = {res} 168.64166
+{txt}Iteration 0:{col 16}log likelihood = {res} 168.64166{txt}  
+Iteration 1:{col 16}log likelihood = {res} 172.22832{txt}  
+Iteration 2:{col 16}log likelihood = {res} 172.61425{txt}  
+Iteration 3:{col 16}log likelihood = {res} 172.66805{txt}  
+Iteration 4:{col 16}log likelihood = {res} 172.68073{txt}  
+Iteration 5:{col 16}log likelihood = {res} 172.68096{txt}  
+Iteration 6:{col 16}log likelihood = {res}   172.681{txt}  
+Iteration 7:{col 16}log likelihood = {res} 172.68101{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       481
+{col 51}{txt}Wald chi2({res}1{txt}){col 67}= {res}    189.54
+{txt}Log likelihood = {res} 172.68101{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3843273{col 26}{space 2} .0279155{col 37}{space 1}  -13.77{col 46}{space 3}0.000{col 54}{space 4}-.4390407{col 67}{space 3} -.329614
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2927589{col 26}{space 2} .0076865{col 37}{space 1}   38.09{col 46}{space 3}0.000{col 54}{space 4} .2776936{col 67}{space 3} .3078242
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0564513{col 26}{space 2} .0266511{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4}  .004216{col 67}{space 3} .1086866
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1437846{col 26}{space 2} .0106718{col 37}{space 1}   13.47{col 46}{space 3}0.000{col 54}{space 4} .1228682{col 67}{space 3} .1647009
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1060946{col 26}{space 2} .0329999{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.1707732{col 67}{space 3}-.0414161
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7321289{col 26}{space 2} .0999363{col 37}{space 1}    7.33{col 46}{space 3}0.000{col 54}{space 4} .5362573{col 67}{space 3} .9280005
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -345.362{txt} ({res}481{txt} observations.)
+
+{com}. 
+. scalar beta_nobp = el(e(b),1,1)
+
+. 
+. 
+. 
+. * SBP-adjusted model
+
+. 
+. xriml logratio loggmean, fp(m:1, s:1) covars(m: ClinicSBP) dist(men) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 157.58162
+{txt}rescale:       log likelihood = {res} 157.58162
+{txt}rescale eq:    log likelihood = {res}  162.7187
+{txt}Iteration 0:{col 16}log likelihood = {res}  162.7187{txt}  
+Iteration 1:{col 16}log likelihood = {res} 166.22735{txt}  
+Iteration 2:{col 16}log likelihood = {res} 166.62955{txt}  
+Iteration 3:{col 16}log likelihood = {res} 166.70622{txt}  
+Iteration 4:{col 16}log likelihood = {res} 166.70921{txt}  
+Iteration 5:{col 16}log likelihood = {res} 166.71439{txt}  
+Iteration 6:{col 16}log likelihood = {res} 166.71456{txt}  (not concave)
+Iteration 7:{col 16}log likelihood = {res} 166.71456{txt}  
+Iteration 8:{col 16}log likelihood = {res} 166.71457{txt}  
+Iteration 9:{col 16}log likelihood = {res} 166.71457{txt}  (backed up)
+Iteration 10:{col 16}log likelihood = {res} 166.71458{txt}  
+Iteration 11:{col 16}log likelihood = {res} 166.71458{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       466
+{col 51}{txt}Wald chi2({res}2{txt}){col 67}= {res}   1709.06
+{txt}Log likelihood = {res} 166.71458{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3848294{col 26}{space 2} .0465173{col 37}{space 1}   -8.27{col 46}{space 3}0.000{col 54}{space 4}-.4760016{col 67}{space 3}-.2936573
+{txt}{space 3}ClinicSBP {c |}{col 14}{res}{space 2} 6.83e-06{col 26}{space 2}   .00017{col 37}{space 1}    0.04{col 46}{space 3}0.968{col 54}{space 4}-.0003264{col 67}{space 3} .0003401
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2923562{col 26}{space 2} .0248275{col 37}{space 1}   11.78{col 46}{space 3}0.000{col 54}{space 4} .2436952{col 67}{space 3} .3410173
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0610712{col 26}{space 2} .0284841{col 37}{space 1}    2.14{col 46}{space 3}0.032{col 54}{space 4} .0052434{col 67}{space 3} .1168989
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1443747{col 26}{space 2} .0108082{col 37}{space 1}   13.36{col 46}{space 3}0.000{col 54}{space 4} .1231911{col 67}{space 3} .1655583
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1061376{col 26}{space 2} .0326021{col 37}{space 1}   -3.26{col 46}{space 3}0.001{col 54}{space 4}-.1700365{col 67}{space 3}-.0422386
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7346521{col 26}{space 2} .1029523{col 37}{space 1}    7.14{col 46}{space 3}0.000{col 54}{space 4} .5328693{col 67}{space 3} .9364349
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -333.429{txt} ({res}466{txt} observations.)
+
+{com}. 
+. scalar beta_sbp = el(e(b),1,1)
+
+. 
+. 
+. 
+. * DBP-adjusted model
+
+. 
+. xriml logratio loggmean, fp(m:1, s:1) covars(m: ClinicDBP) dist(men) centile(7.5 92.5) se
+{txt}-> gen double Xm_1 = loggmean-2.41717637 if __000004 
+-> gen double Xs_1 = loggmean-2.41717637 if __000004 
+
+initial:       log likelihood = {res} 158.23206
+{txt}rescale:       log likelihood = {res} 158.23206
+{txt}rescale eq:    log likelihood = {res} 163.05494
+{txt}Iteration 0:{col 16}log likelihood = {res} 163.05494{txt}  
+Iteration 1:{col 16}log likelihood = {res} 166.93428{txt}  
+Iteration 2:{col 16}log likelihood = {res} 167.30699{txt}  
+Iteration 3:{col 16}log likelihood = {res} 167.35078{txt}  
+Iteration 4:{col 16}log likelihood = {res} 167.37428{txt}  
+Iteration 5:{col 16}log likelihood = {res} 167.40726{txt}  
+Iteration 6:{col 16}log likelihood = {res} 167.40758{txt}  
+Iteration 7:{col 16}log likelihood = {res} 167.40766{txt}  
+Iteration 8:{col 16}log likelihood = {res} 167.40767{txt}  
+Iteration 9:{col 16}log likelihood = {res} 167.40769{txt}  
+Iteration 10:{col 16}log likelihood = {res} 167.40783{txt}  
+Iteration 11:{col 16}log likelihood = {res} 167.40783{txt}  
+
+Modulus exp-Normal Regression{col 51}Number of obs{col 67}= {res}       465
+{col 51}{txt}Wald chi2({res}2{txt}){col 67}= {res}     56.92
+{txt}Log likelihood = {res} 167.40783{col 51}{txt}Prob > chi2{col 67}= {res}    0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    logratio{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}M            {txt}{c |}
+{space 8}Xm_1 {c |}{col 14}{res}{space 2}-.3899193{col 26}{space 2} .0548359{col 37}{space 1}   -7.11{col 46}{space 3}0.000{col 54}{space 4}-.4973956{col 67}{space 3} -.282443
+{txt}{space 3}ClinicDBP {c |}{col 14}{res}{space 2} .0009117{col 26}{space 2} .0005938{col 37}{space 1}    1.54{col 46}{space 3}0.125{col 54}{space 4}-.0002521{col 67}{space 3} .0020754
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2151566{col 26}{space 2} .0479567{col 37}{space 1}    4.49{col 46}{space 3}0.000{col 54}{space 4} .1211632{col 67}{space 3} .3091499
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}S            {txt}{c |}
+{space 8}Xs_1 {c |}{col 14}{res}{space 2} .0613674{col 26}{space 2} .0289031{col 37}{space 1}    2.12{col 46}{space 3}0.034{col 54}{space 4} .0047184{col 67}{space 3} .1180164
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1432282{col 26}{space 2} .0108324{col 37}{space 1}   13.22{col 46}{space 3}0.000{col 54}{space 4}  .121997{col 67}{space 3} .1644594
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}G            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1099147{col 26}{space 2} .0327165{col 37}{space 1}   -3.36{col 46}{space 3}0.001{col 54}{space 4}-.1740379{col 67}{space 3}-.0457915
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}D            {txt}{c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .7266721{col 26}{space 2} .1034165{col 37}{space 1}    7.03{col 46}{space 3}0.000{col 54}{space 4} .5239795{col 67}{space 3} .9293648
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+Calculating SE of 7.5th centile ...
+
+Calculating SE of 92.5th centile ...
+{res}
+{txt}Final deviance = {res} -334.816{txt} ({res}465{txt} observations.)
+
+{com}. 
+. scalar beta_dbp = el(e(b),1,1)
+
+. 
+. 
+. 
+. * Compare the three proportional-bias coefficients
+
+. 
+. display "No BP: " beta_nobp
+{res}No BP: -.38432734
+
+{com}. 
+. display "SBP:    " beta_sbp
+{res}SBP:    -.38482944
+
+{com}. 
+. display "DBP:    " beta_dbp
+{res}DBP:    -.38991931
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Golnaz\Desktop\sensitivity HTN\HTN-SBP.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}31 Jul 2026, 08:52:01
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
